@@ -101,4 +101,10 @@ sns.scatterplot(
     x='gross_amount',
     y='mins'
 )
+# %% [markdown]
+# # QR-codes
+# %%
+(pickup.groupby(['vehicle_id']).qr_code.nunique() == 1).all()
+# %% [markdown]
+# QR-codes map to vehicle IDs 1:1.
 # %%
