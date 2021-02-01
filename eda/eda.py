@@ -107,4 +107,9 @@ sns.scatterplot(
 (pickup.groupby(['vehicle_id']).qr_code.nunique() == 1).all()
 # %% [markdown]
 # QR-codes map to vehicle IDs 1:1.
+# %% [markdown]
+# # Prep data quality checks
 # %%
+events.select_dtypes('object').apply(lambda c: c.dropna().str.len()).describe()
+# %% [markdown]
+# All id-columns are made of 20 character-long strings
