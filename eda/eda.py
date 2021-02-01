@@ -111,5 +111,8 @@ sns.scatterplot(
 # # Prep data quality checks
 # %%
 events.select_dtypes('object').apply(lambda c: c.dropna().str.len()).describe()
+pickup.qr_code.dropna().map(len).describe()
 # %% [markdown]
-# All id-columns are made of 20 character-long strings
+# All id-columns are made of 20 character-long strings.
+
+# QR-code column made of 6 characters.
