@@ -7,9 +7,9 @@ from haversine import haversine
 # %%
 os.chdir(os.path.dirname(__file__))
 # %%
-deploy = pd.read_csv('../data/deployments.csv')
-pickup = pd.read_csv('../data/pickups.csv')
-rides  = pd.read_csv('../data/rides.csv')
+deploy = pd.read_csv('../../data/deployments.csv')
+pickup = pd.read_csv('../../data/pickups.csv')
+rides  = pd.read_csv('../../data/rides.csv')
 # %%
 deploy.info()
 deploy.describe()
