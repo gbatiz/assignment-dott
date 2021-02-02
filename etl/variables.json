@@ -1,0 +1,27 @@
+{
+    "DAGVARS_INGEST": {
+        "ingest_config": {
+            "deployment": {
+                "gcs_source": "gs://gb-dott-multi/data/deployments.csv",
+                "query_create_staging": "create_staging_deployment.sql",
+                "query_insert_into": "insert_into_deployment.sql",
+                "table_staging": "staging.deployment"
+            },
+            "pickup": {
+                "gcs_source": "gs://gb-dott-multi/data/pickups.csv",
+                "query_create_staging": "create_staging_pickup.sql",
+                "query_insert_into": "insert_into_pickup.sql",
+                "table_staging": "staging.pickup"
+            },
+            "ride": {
+                "gcs_source": "gs://gb-dott-multi/data/rides.csv",
+                "query_create_staging": "create_staging_ride.sql",
+                "query_insert_into": "insert_into_ride.sql",
+                "table_staging": "staging.ride"
+            }
+        },
+        "sql_connection_id": "postgres"
+    },
+    "PATH_SCRIPTS": "/home/airflow/gcs/plugins/scripts/",
+    "PROJECT_ID": "oval-turbine-303415"
+}
