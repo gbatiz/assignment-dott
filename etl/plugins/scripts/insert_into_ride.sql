@@ -4,7 +4,7 @@ BEGIN;
 INSERT INTO public.duplicate
     SELECT s.ride_id      AS id
           ,'ride'         AS table_name
-          ,'{{ ti }}'         AS airflow_task_run_id
+          ,'{{ ti }}'     AS airflow_task_run_id
       FROM staging.ride AS s
 INNER JOIN public.ride AS p
         ON s.ride_id = p.ride_id

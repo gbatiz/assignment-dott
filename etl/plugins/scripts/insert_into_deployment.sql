@@ -4,7 +4,7 @@ BEGIN;
 INSERT INTO public.duplicate
     SELECT s.task_id      AS id
           ,'deployment'   AS table_name
-          ,'{{ ti }}'         AS airflow_task_run_id
+          ,'{{ ti }}'     AS airflow_task_run_id
       FROM staging.deployment AS s
 INNER JOIN public.deployment AS p
         ON s.task_id = p.task_id
