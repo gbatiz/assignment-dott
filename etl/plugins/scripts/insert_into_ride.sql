@@ -1,3 +1,5 @@
+CREATE EXTENSION IF NOT EXISTS earthdistance CASCADE;
+
 BEGIN;
 
 -- Log duplicates
@@ -11,7 +13,7 @@ INNER JOIN public.ride AS p
      WHERE s.ride_id != 'ride_id';
 
 -- Release batch
-INSERT INTO public.ride
+WITH noheader_typecasted AS (
 SELECT ride_id
       ,vehicle_id
       ,CAST(time_ride_start AS timestamptz)  AS time_ride_start
@@ -23,6 +25,14 @@ SELECT ride_id
       ,CAST(gross_amount    AS decimal)      AS gross_amount
   FROM staging.ride
  WHERE ride_id != 'ride_id'
+)
+INSERT INTO public.ride
+SELECT *
+      ,EARTH_DISTANCE(
+          LL_TO_EARTH(start_lat, start_lng)
+         ,LL_TO_EARTH(end_lat, end_lng)
+       )                                     AS distance_meters
+FROM noheader_typecasted
 ON CONFLICT ON CONSTRAINT ride_pkey DO NOTHING;
 
 COMMIT;
