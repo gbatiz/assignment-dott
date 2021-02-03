@@ -1,5 +1,6 @@
 BEGIN;
 
+
 DROP TABLE IF EXISTS public.performance;
 CREATE TABLE public.performance AS
 
@@ -111,7 +112,9 @@ WITH last_cycle_rides AS (
     GROUP BY vehicle_id
 )
 
-
+-- Create final table by adding the same rows again,
+-- this time using QR-codes, so queries don't have to distinguish
+-- between QR-code and Vehicle ID
     SELECT *
       FROM reshaped
 
@@ -128,6 +131,8 @@ UNION ALL
                ON r.lookup = p.vehicle_id;
 
 
+-- Create index on lookup for fast response
 CREATE INDEX idx_lookup ON public.performance ( lookup );
+
 
 COMMIT;
