@@ -23,6 +23,11 @@ dag = DAG(
 )
 
 with dag:
+    build_performance = PostgresOperator(
+        task_id='build.performance',
+        sql=(PATH_SCRIPTS / DAGVARS['query_build_performance']).read_text()
+    )
+
     for table, conf in DAGVARS['ingest_config'].items():
         create_staging_table = PostgresOperator(
             task_id=f'create_staging_table.{table}',
@@ -47,3 +52,4 @@ with dag:
             sql=(PATH_SCRIPTS / conf['query_insert_into']).read_text()
         )
         insert_into.set_upstream(staging)
+        insert_into.set_downstream(build_performance)

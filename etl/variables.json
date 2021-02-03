@@ -20,6 +20,7 @@
                 "table_staging": "staging.ride"
             }
         },
+        "query_build_performance": "build_performance.sql",
         "sql_connection_id": "postgres"
     },
     "PATH_SCRIPTS": "/home/airflow/gcs/plugins/scripts/",

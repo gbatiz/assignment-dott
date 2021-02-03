@@ -54,7 +54,17 @@ events = (pd
     [['vehicle_id', 'deploy_id', 'pickup_id', 'ride_id', 'gross_amount', 'kms', 'mins', 'event', 'ts']]
     .sort_values(['vehicle_id', 'ts'])
     .reset_index(drop=True)
-    # `status`-column to show the latest service event, eg. `deploy_end` means it's available on the street.
+    # `status`-column to show the latest service event, eg. `deploy_end` means it's available on the street.(o
+    .merge(
+        right=deploy.groupby('vehicle_id').time_task_resolved.max(),
+        how='inner',
+        on='vehicle_id'
+    ).merge(
+        right=pickup.groupby('vehicle_id').time_task_created.max(),
+        how='inner',
+        on='vehicle_id'
+    )
+[lambda df: (df.ts>df.time_task_created) & (df.ts>df.time_task_resolved) & (df.event!='ride_end')]
     .assign(status=lambda df: df.event.where(~df.event.str.contains('ride')))
     .assign(status=lambda df: df.groupby('vehicle_id').status.ffill())
 )
@@ -71,6 +81,24 @@ offending_rides.describe()
 # Quite some rides ending after a service pickup.
 #
 # Other discrepancies possibly due to both eventual consistency in the source data, and invalid rides as well.
+# %% [markdown]
+# ## Cross-check the number of expected invalid rides in the last deployment cycle (`create_performance.sql`)
+# %%
+(events
+    [
+          events.ride_id.notnull()
+        & ~(events.status == 'deploy_end')
+        & events.status.notnull()
+    ].merge(
+        right=deploy.groupby('vehicle_id').time_task_resolved.max(),
+        how='inner',
+        on='vehicle_id'
+    ).merge(
+        right=pickup.groupby('vehicle_id').time_task_created.max(),
+        how='inner',
+        on='vehicle_id'
+    )
+)[lambda df: (df.ts>df.time_task_created) & (df.ts>df.time_task_resolved) & (df.event!='ride_end')]
 # %% [markdown]
 # ## Lack of `gross_amount`?
 # %%dd
