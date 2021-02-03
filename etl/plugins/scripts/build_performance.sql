@@ -51,47 +51,47 @@ WITH last_cycle_rides AS (
 -- and the last 5 deployments per vehicle,
 -- sorted by vehicle and time.
     (SELECT ts
-          ,vehicle_id
-          ,'deployment' AS "event"
-          ,task_id
-          ,NULL AS ride_id
-          ,NULL AS revenue
-          ,NULL AS distance_meters
-          ,NULL AS start_lat
-          ,NULL AS start_lng
-          ,NULL AS end_lat
-          ,NULL AS end_lng
-      FROM last_deployments
-     WHERE recency <= 5)
+           ,vehicle_id
+           ,'deployment' AS "event"
+           ,task_id
+           ,NULL AS ride_id
+           ,NULL AS revenue
+           ,NULL AS distance_meters
+           ,NULL AS start_lat
+           ,NULL AS start_lng
+           ,NULL AS end_lat
+           ,NULL AS end_lng
+       FROM last_deployments
+      WHERE recency <= 5)
 
     UNION ALL
 
     (SELECT time_ride_start AS ts
-          ,vehicle_id
-          ,'ride'  AS "event"
-          ,NULL AS task_id
-          ,ride_id
-          ,gross_amount AS revenue
-          ,distance_meters
-          ,start_lat
-          ,start_lng
-          ,end_lat
-          ,end_lng
-      FROM last_cycle_rides
-     WHERE revenue_rank <= 5)
+           ,vehicle_id
+           ,'ride'  AS "event"
+           ,NULL AS task_id
+           ,ride_id
+           ,gross_amount AS revenue
+           ,distance_meters
+           ,start_lat
+           ,start_lng
+           ,end_lat
+           ,end_lng
+       FROM last_cycle_rides
+      WHERE revenue_rank <= 5)
 
      ORDER BY vehicle_id, ts DESC
 
 ), last_rides_and_deployments_with_recency AS (
--- This table adds a recency column to filter for only 5 rows per vehicle later
+-- This table adds a recency column to filter for only 5 rows per vehicle later.
     SELECT *,
            ROW_NUMBER() OVER (PARTITION BY vehicle_id ORDER BY ts DESC) AS recency
       FROM last_rides_and_deployments
 
 
 ), reshaped AS (
--- Drop unneeded timestamp column, reshape table to have a vehicle_id to for lookups,
--- and a json string containing the API-response
+-- Drop unneeded timestamp column, reshape table to have a vehicle_id for lookups,
+-- and a json string containing the API-response. Limit to 5 rows per vehicle.
       SELECT vehicle_id AS lookup
             ,CAST(ARRAY_TO_JSON(ARRAY_AGG(JSON_STRIP_NULLS(ROW_TO_JSON(performance)))) AS text) AS response
         FROM (
@@ -114,7 +114,7 @@ WITH last_cycle_rides AS (
 
 -- Create final table by adding the same rows again,
 -- this time using QR-codes, so queries don't have to distinguish
--- between QR-code and Vehicle ID
+-- between QR-code and vehicle ID.
     SELECT *
       FROM reshaped
 
