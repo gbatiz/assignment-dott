@@ -45,7 +45,7 @@ class Performance(db.Model):
     lookup = db.Column(db.Text, primary_key=True)
     response = db.Column(db.Text)
 
-@app.route("/vehicles/<string:lookup>")
+@app.route("/api/v1/vehicles/<string:lookup>")
 def get_performance(lookup):
     if len(lookup) not in (20, 6):
         abort(400, description='Provide a valid dott vehicle ID (20 characters) or QR-code (6 characters).')
