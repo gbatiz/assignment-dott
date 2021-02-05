@@ -21,6 +21,7 @@
             }
         },
         "query_build_performance": "build_performance.sql",
+        "query_insert_into_qr_code": "insert_into_qr_code.sql",
         "sql_connection_id": "postgres"
     },
     "PATH_SCRIPTS": "/home/airflow/gcs/plugins/scripts/",

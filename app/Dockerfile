@@ -5,7 +5,8 @@ FROM python:3.9-slim
 # Add project data for getting secrets
 ENV PROJECT_ID=oval-turbine-303415 \
     SECRET_ID=postgres_uri \
-    VERSION_ID=latest
+    VERSION_ID=latest \
+    SUPERSET_REDIRECT_URL=http://localhost:9999/superset/dashboard/1/
 
 # Allow statements and log messages to immediately appear in the Knative logs
 ENV PYTHONUNBUFFERED True
