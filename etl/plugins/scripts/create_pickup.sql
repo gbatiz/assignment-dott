@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS public.pickup;
+DROP TABLE IF EXISTS public.pickup CASCADE;
 CREATE TABLE IF NOT EXISTS public.pickup (
 	 task_id            TEXT        PRIMARY KEY CONSTRAINT len_task_id    CHECK (char_length(task_id)    = 20)
 	,vehicle_id         TEXT        NOT NULL    CONSTRAINT len_vehicle_id CHECK (char_length(vehicle_id) = 20)

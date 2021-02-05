@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS staging.ride;
+DROP TABLE IF EXISTS staging.ride CASCADE;
 CREATE TABLE staging.ride (
 	 ride_id         TEXT
 	,vehicle_id      TEXT

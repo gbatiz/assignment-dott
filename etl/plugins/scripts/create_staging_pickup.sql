@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS staging.pickup;
+DROP TABLE IF EXISTS staging.pickup CASCADE;
 CREATE TABLE staging.pickup (
 	 task_id            TEXT
 	,vehicle_id         TEXT
