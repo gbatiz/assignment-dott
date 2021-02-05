@@ -18,10 +18,10 @@ SELECT ride_id
       ,vehicle_id
       ,CAST(time_ride_start AS timestamptz)  AS time_ride_start
       ,CAST(time_ride_end   AS timestamptz)  AS time_ride_end
-      ,CAST(start_lat       AS decimal)      AS start_lat
-      ,CAST(start_lng       AS decimal)      AS start_lng
-      ,CAST(end_lat         AS decimal)      AS end_lat
-      ,CAST(end_lng         AS decimal)      AS end_lng
+      ,NULLIF(CAST(start_lat AS decimal), 0) AS start_lat
+      ,NULLIF(CAST(start_lng AS decimal), 0) AS start_lng
+      ,NULLIF(CAST(end_lat   AS decimal), 0) AS end_lat
+      ,NULLIF(CAST(end_lng   AS decimal), 0) AS end_lng
       ,CAST(gross_amount    AS decimal)      AS gross_amount
   FROM staging.ride
  WHERE ride_id != 'ride_id'
