@@ -16,7 +16,6 @@ expectations = json.loads(Path(PATH_EXPECTATIONS_SQL_CREATE).read_text())
 
 PATH_SCRIPTS_FOLDER = os.environ['PATH_SCRIPTS_FOLDER']
 scripts = {}
-
 for script in Path(PATH_SCRIPTS_FOLDER).iterdir():
     scripts[script.name] = script.read_text()
 
