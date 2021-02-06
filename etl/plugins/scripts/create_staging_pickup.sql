@@ -1,3 +1,4 @@
+CREATE SCHEMA IF NOT EXISTS staging;
 DROP TABLE IF EXISTS staging.pickup CASCADE;
 CREATE TABLE staging.pickup (
 	 task_id            TEXT

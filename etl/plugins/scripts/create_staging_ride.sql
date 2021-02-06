@@ -1,3 +1,4 @@
+CREATE SCHEMA IF NOT EXISTS staging;
 DROP TABLE IF EXISTS staging.ride CASCADE;
 CREATE TABLE staging.ride (
 	 ride_id         TEXT
