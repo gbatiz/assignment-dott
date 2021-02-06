@@ -11,16 +11,10 @@ DB = os.getenv('DB_TEST')
 NAME_TESTDB = 'dott_testing'
 NAME_OTHERDB = 'postgres'
 
-PATH_EXPECTATIONS_SQL_CREATE = os.getenv(
-    'PATH_EXPECTATIONS_SQL_CREATE',
-    '/run/media/gbatiz/datavault/source/workspaces/dott_assignment/git/test/expectation_sql_create.json'
-)
+PATH_EXPECTATIONS_SQL_CREATE = os.getenv('PATH_EXPECTATIONS_SQL_CREATE')
 expectations = json.loads(Path(PATH_EXPECTATIONS_SQL_CREATE).read_text())
 
-PATH_SCRIPTS_FOLDER = os.getenv(
-    'PATH_SCRIPTS',
-    '/run/media/gbatiz/datavault/source/workspaces/dott_assignment/git/etl/plugins/scripts'
-)
+PATH_SCRIPTS_FOLDER = os.getenv('PATH_SCRIPTS')
 scripts = {}
 
 for script in Path(PATH_SCRIPTS_FOLDER).iterdir():
