@@ -7,14 +7,14 @@ import pandas as pd
 import json
 
 
-DB = os.getenv('DB_TEST')
+DB_TEST = os.environ['DB_TEST']
 NAME_TESTDB = 'dott_testing'
 NAME_OTHERDB = 'postgres'
 
-PATH_EXPECTATIONS_SQL_CREATE = os.getenv('PATH_EXPECTATIONS_SQL_CREATE')
+PATH_EXPECTATIONS_SQL_CREATE = os.environ['PATH_EXPECTATIONS_SQL_CREATE']
 expectations = json.loads(Path(PATH_EXPECTATIONS_SQL_CREATE).read_text())
 
-PATH_SCRIPTS_FOLDER = os.getenv('PATH_SCRIPTS')
+PATH_SCRIPTS_FOLDER = os.environ['PATH_SCRIPTS_FOLDER']
 scripts = {}
 
 for script in Path(PATH_SCRIPTS_FOLDER).iterdir():
@@ -42,7 +42,7 @@ class TestTableCreation(unittest.TestCase):
 
     def setUp(self):
         # Create test db
-        conn = psycopg2.connect(DB)
+        conn = psycopg2.connect(DB_TEST)
         conn.autocommit = True
         cur = conn.cursor()
         cur.execute(
@@ -52,7 +52,7 @@ class TestTableCreation(unittest.TestCase):
         conn.close()
 
         # Connect to test db
-        self.conn = psycopg2.connect(DB, database=NAME_TESTDB)
+        self.conn = psycopg2.connect(DB_TEST, database=NAME_TESTDB)
         self.conn.autocommit = True
         self.cur = self.conn.cursor()
         self.maxDiff = None
@@ -64,7 +64,7 @@ class TestTableCreation(unittest.TestCase):
         self.conn.close()
 
         # Connect to other db, drop test db, close connections
-        conn = psycopg2.connect(DB)
+        conn = psycopg2.connect(DB_TEST)
         conn.autocommit = True
         cur = conn.cursor()
         cur.execute(
@@ -80,112 +80,136 @@ class TestTableCreation(unittest.TestCase):
         table = 'public.deployment'
         expectation = expectations[table]
         self.cur.execute(script)
-        results = []
-        for check in [QUERY_CHECK_COLS, QUERY_CHECK_CONSTRAINTS]:
+        results = {}
+        for check_query, check_name in [
+                (QUERY_CHECK_COLS, 'columns'),
+                (QUERY_CHECK_CONSTRAINTS, 'constraints')
+            ]:
             result = pd.read_sql(
-                sql=check.format(table.split('.')[1]),
+                sql=check_query.format(table.split('.')[1]),
                 con=self.conn
             ).to_dict('records')
-            results.extend(result)
-        self.assertListEqual(results, expectation)
+            results[check_name] = result
+        self.assertDictEqual(results, expectation)
 
     def test_create__duplicate(self):
         script = scripts['create__duplicate.sql']
         table = 'public.duplicate'
         expectation = expectations[table]
         self.cur.execute(script)
-        results = []
-        for check in [QUERY_CHECK_COLS, QUERY_CHECK_CONSTRAINTS]:
+        results = {}
+        for check_query, check_name in [
+                (QUERY_CHECK_COLS, 'columns'),
+                (QUERY_CHECK_CONSTRAINTS, 'constraints')
+            ]:
             result = pd.read_sql(
-                sql=check.format(table.split('.')[1]),
+                sql=check_query.format(table.split('.')[1]),
                 con=self.conn
             ).to_dict('records')
-            results.extend(result)
-        self.assertListEqual(results, expectation)
+            results[check_name] = result
+        self.assertDictEqual(results, expectation)
 
     def test_create_pickup(self):
         script = scripts['create_pickup.sql']
         table = 'public.pickup'
         expectation = expectations[table]
         self.cur.execute(script)
-        results = []
-        for check in [QUERY_CHECK_COLS, QUERY_CHECK_CONSTRAINTS]:
+        results = {}
+        for check_query, check_name in [
+                (QUERY_CHECK_COLS, 'columns'),
+                (QUERY_CHECK_CONSTRAINTS, 'constraints')
+            ]:
             result = pd.read_sql(
-                sql=check.format(table.split('.')[1]),
+                sql=check_query.format(table.split('.')[1]),
                 con=self.conn
             ).to_dict('records')
-            results.extend(result)
-        self.assertListEqual(results, expectation)
+            results[check_name] = result
+        self.assertDictEqual(results, expectation)
 
     def test_create_qr_code(self):
         script = scripts['create_qr_code.sql']
         table = 'public.qr_code'
         expectation = expectations[table]
         self.cur.execute(script)
-        results = []
-        for check in [QUERY_CHECK_COLS, QUERY_CHECK_CONSTRAINTS]:
+        results = {}
+        for check_query, check_name in [
+                (QUERY_CHECK_COLS, 'columns'),
+                (QUERY_CHECK_CONSTRAINTS, 'constraints')
+            ]:
             result = pd.read_sql(
-                sql=check.format(table.split('.')[1]),
+                sql=check_query.format(table.split('.')[1]),
                 con=self.conn
             ).to_dict('records')
-            results.extend(result)
-        self.assertListEqual(results, expectation)
+            results[check_name] = result
+        self.assertDictEqual(results, expectation)
 
     def test_create_ride(self):
         script = scripts['create_ride.sql']
         table = 'public.ride'
         expectation = expectations[table]
         self.cur.execute(script)
-        results = []
-        for check in [QUERY_CHECK_COLS, QUERY_CHECK_CONSTRAINTS]:
+        results = {}
+        for check_query, check_name in [
+                (QUERY_CHECK_COLS, 'columns'),
+                (QUERY_CHECK_CONSTRAINTS, 'constraints')
+            ]:
             result = pd.read_sql(
-                sql=check.format(table.split('.')[1]),
+                sql=check_query.format(table.split('.')[1]),
                 con=self.conn
             ).to_dict('records')
-            results.extend(result)
-        self.assertListEqual(results, expectation)
+            results[check_name] = result
+        self.assertDictEqual(results, expectation)
 
     def test_create_staging_deployment(self):
         script = scripts['create_staging_deployment.sql']
         table = 'staging.deployment'
         expectation = expectations[table]
         self.cur.execute(script)
-        results = []
-        for check in [QUERY_CHECK_COLS, QUERY_CHECK_CONSTRAINTS]:
+        results = {}
+        for check_query, check_name in [
+                (QUERY_CHECK_COLS, 'columns'),
+                (QUERY_CHECK_CONSTRAINTS, 'constraints')
+            ]:
             result = pd.read_sql(
-                sql=check.format(table.split('.')[1]),
+                sql=check_query.format(table.split('.')[1]),
                 con=self.conn
             ).to_dict('records')
-            results.extend(result)
-        self.assertListEqual(results, expectation)
+            results[check_name] = result
+        self.assertDictEqual(results, expectation)
 
     def test_create_staging_pickup(self):
         script = scripts['create_staging_pickup.sql']
         table = 'staging.pickup'
         expectation = expectations[table]
         self.cur.execute(script)
-        results = []
-        for check in [QUERY_CHECK_COLS, QUERY_CHECK_CONSTRAINTS]:
+        results = {}
+        for check_query, check_name in [
+                (QUERY_CHECK_COLS, 'columns'),
+                (QUERY_CHECK_CONSTRAINTS, 'constraints')
+            ]:
             result = pd.read_sql(
-                sql=check.format(table.split('.')[1]),
+                sql=check_query.format(table.split('.')[1]),
                 con=self.conn
             ).to_dict('records')
-            results.extend(result)
-        self.assertListEqual(results, expectation)
+            results[check_name] = result
+        self.assertDictEqual(results, expectation)
 
     def test_create_staging_ride(self):
         script = scripts['create_staging_ride.sql']
         table = 'staging.ride'
         expectation = expectations[table]
         self.cur.execute(script)
-        results = []
-        for check in [QUERY_CHECK_COLS, QUERY_CHECK_CONSTRAINTS]:
+        results = {}
+        for check_query, check_name in [
+                (QUERY_CHECK_COLS, 'columns'),
+                (QUERY_CHECK_CONSTRAINTS, 'constraints')
+            ]:
             result = pd.read_sql(
-                sql=check.format(table.split('.')[1]),
+                sql=check_query.format(table.split('.')[1]),
                 con=self.conn
             ).to_dict('records')
-            results.extend(result)
-        self.assertListEqual(results, expectation)
+            results[check_name] = result
+        self.assertDictEqual(results, expectation)
 
 
 if __name__ == '__main__':
