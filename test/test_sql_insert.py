@@ -95,7 +95,7 @@ class BaseTestInsertInto(unittest.TestCase):
         result = json.loads(result)  # Getting a dict back
         return result
 
-    def _check_insert_on_main_table(
+    def check_insert_on_main_table(
             self,
             table_name,
             scenario,
@@ -127,7 +127,7 @@ class TestInsertIntoDeployment(BaseTestInsertInto):
             ('36AUD64tmGggMdmXLwY3', 'inxamrBymPp1kKuGoOXE', '2019-05-19 03:20:30.842 UTC', '2019-05-20 06:38:49.76 UTC'),
             ('TcPf6gwxm98aVufsLcCo', '1DfPwD1x6teNIhv8aS3p', '2019-05-19 00:39:49.472 UTC', '2019-05-19 05:13:56.514 UTC'),
         ]
-        result = self._check_insert_on_main_table(
+        result = self.check_insert_on_main_table(
             table_name=table_name,
             scenario=scenario,
             test_insert_clause=test_insert_clause,
@@ -148,7 +148,7 @@ class TestInsertIntoDeployment(BaseTestInsertInto):
             ('36AUD64tmGggMdmXLwY3', 'inxamrBymPp1kKuGoOXE', '2019-05-19 03:20:30.842 UTC', '2019-05-20 06:38:49.76 UTC'),
             ('TcPf6gwxm98aVufsLcCo', '1DfPwD1x6teNIhv8aS3p', '2019-05-19 00:39:49.472 UTC', '2019-05-19 05:13:56.514 UTC'),
         ]
-        result = self._check_insert_on_main_table(
+        result = self.check_insert_on_main_table(
             table_name=table_name,
             scenario=scenario,
             test_insert_clause=test_insert_clause,
@@ -170,7 +170,7 @@ class TestInsertIntoDeployment(BaseTestInsertInto):
             ('task_id', 'vehicle_id', 'time_task_created', 'time_task_resolved'),
             ('asd', 'i1Fycyzyi1HeeEN8eVh1', '2019-05-19 02:34:31.999 UTC', '2019-05-21 04:52:29.113 UTC'),
         ]
-        result = self._check_insert_on_main_table(
+        result = self.check_insert_on_main_table(
             table_name=table_name,
             scenario=scenario,
             test_insert_clause=test_insert_clause,
@@ -189,7 +189,7 @@ class TestInsertIntoDeployment(BaseTestInsertInto):
             ('task_id', 'vehicle_id', 'time_task_created', 'time_task_resolved'),
             ('6fy0fO6BHW2IvxunS54N', '1234', '2019-05-19 02:34:31.999 UTC', '2019-05-21 04:52:29.113 UTC'),
         ]
-        result = self._check_insert_on_main_table(
+        result = self.check_insert_on_main_table(
             table_name=table_name,
             scenario=scenario,
             test_insert_clause=test_insert_clause,
@@ -208,7 +208,7 @@ class TestInsertIntoDeployment(BaseTestInsertInto):
             ('task_id', 'vehicle_id', 'time_task_created', 'time_task_resolved'),
             ('6fy0fO6BHW2IvxunS54N', '1234', '2019-05-19 02:34:31.999 UTC', None),
         ]
-        result = self._check_insert_on_main_table(
+        result = self.check_insert_on_main_table(
             table_name=table_name,
             scenario=scenario,
             test_insert_clause=test_insert_clause,
@@ -227,7 +227,7 @@ class TestInsertIntoDeployment(BaseTestInsertInto):
             ('task_id', 'vehicle_id', 'time_task_created', 'time_task_resolved'),
             ('6fy0fO6BHW2IvxunS54N', '1234', '2019-05-19 02:34:31.999 UTC', '2019-05-21-04:52:29.113 UTC'),
         ]
-        result = self._check_insert_on_main_table(
+        result = self.check_insert_on_main_table(
             table_name=table_name,
             scenario=scenario,
             test_insert_clause=test_insert_clause,
@@ -253,7 +253,7 @@ class TestInsertIntoPickup(BaseTestInsertInto):
             ('xGAnYaxqoyGUa8RFcaTr', 'NpbLgU80Rliumo1QkoeZ', 'NWM2QA', '2019-05-04 00:07:17.13 UTC', '2019-05-05 16:11:24.233 UTC'),
             ('MdkXjdQEW0BfFssY1w44', 'qHbfAktQ2MYfme75EhBM', 'M43B0N', '2019-05-04 18:36:10.529 UTC', '2019-05-04 18:36:10.998 UTC'),
         ]
-        result = self._check_insert_on_main_table(
+        result = self.check_insert_on_main_table(
             table_name=table_name,
             scenario=scenario,
             test_insert_clause=test_insert_clause,
@@ -274,7 +274,7 @@ class TestInsertIntoPickup(BaseTestInsertInto):
             ('xGAnYaxqoyGUa8RFcaTr', 'NpbLgU80Rliumo1QkoeZ', 'NWM2QA', '2019-05-04 00:07:17.13 UTC', '2019-05-05 16:11:24.233 UTC'),
             ('MdkXjdQEW0BfFssY1w44', 'qHbfAktQ2MYfme75EhBM', 'M43B0N', '2019-05-04 18:36:10.529 UTC', '2019-05-04 18:36:10.998 UTC'),
         ]
-        result = self._check_insert_on_main_table(
+        result = self.check_insert_on_main_table(
             table_name=table_name,
             scenario=scenario,
             test_insert_clause=test_insert_clause,
@@ -296,7 +296,7 @@ class TestInsertIntoPickup(BaseTestInsertInto):
             ('task_id', 'vehicle_id', 'qr_code', 'time_task_created', 'time_task_resolved'),
             ('yV4kXBtasasaaAx6GNRcJDLsF2', 'JkDkmUHoZ4ngg7hAx0F4', 'XXBGC5', '2019-05-04 21:30:07.089 UTC', '2019-05-04 21:30:07.883 UTC'),
         ]
-        result = self._check_insert_on_main_table(
+        result = self.check_insert_on_main_table(
             table_name=table_name,
             scenario=scenario,
             test_insert_clause=test_insert_clause,
@@ -317,7 +317,7 @@ class TestInsertIntoPickup(BaseTestInsertInto):
             ('xGAnYaxqoyGUa8RFcaTr', 'NpbLgU80Rliumo1QkoeZ', 'NWM2QA', '2019-05-04 00:07:17.13 UTC', '2019-05-05 16:11:24.233 UTC'),
             ('MdkXjdQEW0BfFssY1w44', 'qHbfAktQ2MYfme75EhBM', 'M43B0N', '2019-05-04 18:36:10.529 UTC', '2019-05-04 18:36:10.998 UTC'),
         ]
-        result = self._check_insert_on_main_table(
+        result = self.check_insert_on_main_table(
             table_name=table_name,
             scenario=scenario,
             test_insert_clause=test_insert_clause,
@@ -337,7 +337,7 @@ class TestInsertIntoPickup(BaseTestInsertInto):
             ('xGAnYaxqoyGUa8RFcaTr', '12', 'NWM2QA', '2019-05-04 00:07:17.13 UTC', '2019-05-05 16:11:24.233 UTC'),
             ('MdkXjdQEW0BfFssY1w44', 'qHbfAktQ2MYfme75EhBM', 'M43B0N', '2019-05-04 18:36:10.529 UTC', '2019-05-04 18:36:10.998 UTC'),
         ]
-        result = self._check_insert_on_main_table(
+        result = self.check_insert_on_main_table(
             table_name=table_name,
             scenario=scenario,
             test_insert_clause=test_insert_clause,
@@ -355,7 +355,7 @@ class TestInsertIntoPickup(BaseTestInsertInto):
         test_insert_values = [
             ('asd', None, None, '2019-05-04 18:36:10.529 UTC', None,)
         ]
-        result = self._check_insert_on_main_table(
+        result = self.check_insert_on_main_table(
             table_name=table_name,
             scenario=scenario,
             test_insert_clause=test_insert_clause,
@@ -374,7 +374,7 @@ class TestInsertIntoPickup(BaseTestInsertInto):
             ('task_id', 'vehicle_id', 'qr_code', 'time_task_created', 'time_task_resolved'),
             ('MdkXjdQEW0BfFssY1w44', 'qHbfAktQ2MYfme75EhBM', 'M43B0N', '2019/05-04 18:36:10.529 UTC', '2019-05-04 18:36:10.998 UTC'),
         ]
-        result = self._check_insert_on_main_table(
+        result = self.check_insert_on_main_table(
             table_name=table_name,
             scenario=scenario,
             test_insert_clause=test_insert_clause,
@@ -400,7 +400,7 @@ class TestInsertIntoRide(BaseTestInsertInto):
             ('y9xR90cTsRdWkC2JuO0r', 'ZWuRqR3eNjRVEQlHPsJy', '2019-05-02 12:32:39.928 UTC', '2019-05-02 12:52:42.333 UTC', '48.83697509765625', '2.3043417930603027', '48.826877593994141', '2.3263616561889648', '4'),
             ('GSX8MZkpWEttApiFsELL', 'j8JnGWoM5bohbxAOzm42', '2019-05-02 21:59:50.218 UTC', '2019-05-02 22:08:13.39 UTC', '48.888835906982422', '2.2892532348632812', '48.888271331787109', '2.3052382469177246', '2.25'),
         ]
-        result = self._check_insert_on_main_table(
+        result = self.check_insert_on_main_table(
             table_name=table_name,
             scenario=scenario,
             test_insert_clause=test_insert_clause,
@@ -421,7 +421,7 @@ class TestInsertIntoRide(BaseTestInsertInto):
             ('y9xR90cTsRdWkC2JuO0r', 'ZWuRqR3eNjRVEQlHPsJy', '2019-05-02 12:32:39.928 UTC', '2019-05-02 12:52:42.333 UTC', '48.83697509765625', '2.3043417930603027', '48.826877593994141', '2.3263616561889648', '4'),
             ('GSX8MZkpWEttApiFsELL', 'j8JnGWoM5bohbxAOzm42', '2019-05-02 21:59:50.218 UTC', '2019-05-02 22:08:13.39 UTC', '48.888835906982422', '2.2892532348632812', '48.888271331787109', '2.3052382469177246', '2.25'),
         ]
-        result = self._check_insert_on_main_table(
+        result = self.check_insert_on_main_table(
             table_name=table_name,
             scenario=scenario,
             test_insert_clause=test_insert_clause,
@@ -445,7 +445,7 @@ class TestInsertIntoRide(BaseTestInsertInto):
             ('y9xR90cTsRdWkC2JuO0r', 'ZWuRqR3eNjRVEQlHPsJy', '2019-05-02 12:32:39.928 UTC', '2019-05-02 12:52:42.333 UTC', '48.83697509765625', '2.3043417930603027', '48.826877593994141', '2.3263616561889648', '4'),
             ('GSX8MZkpWEttApiFsELL', 'j8JnGWoM5bohbxAOzm42', '2019-05-02 21:59:50.218 UTC', '2019-05-02 22:08:13.39 UTC', '48.888835906982422', '2.2892532348632812', '48.888271331787109', '2.3052382469177246', '2.25'),
         ]
-        result = self._check_insert_on_main_table(
+        result = self.check_insert_on_main_table(
             table_name=table_name,
             scenario=scenario,
             test_insert_clause=test_insert_clause,
@@ -464,7 +464,7 @@ class TestInsertIntoRide(BaseTestInsertInto):
             ('ride_id', 'vehicle_id', 'time_ride_start', 'time_ride_end', 'start_lat', 'start_lng', 'end_lat', 'end_lng', 'gross_amount'),
             ('dVPK7fEkGfd3HJiYRMkj', 'f42vh7yVYJACDCv', '2019-05-02 19:24:01.692 UTC', '2019-05-02 19:30:43.433 UTC', '48.829338073730469', '2.3760232925415039', '48.83233642578125', '2.3605866432189941', '2'),
         ]
-        result = self._check_insert_on_main_table(
+        result = self.check_insert_on_main_table(
             table_name=table_name,
             scenario=scenario,
             test_insert_clause=test_insert_clause,
@@ -482,7 +482,7 @@ class TestInsertIntoRide(BaseTestInsertInto):
         test_insert_values = [
             ('dVPK7fEkGfd3HJiYRMkj', 'f42vVrTOJh7yVYJACDCv', '2019-05-02 19:24:01.692 UTC', None, '48.829338073730469', '2.3760232925415039', '48.83233642578125', '2.3605866432189941', '2'),
         ]
-        result = self._check_insert_on_main_table(
+        result = self.check_insert_on_main_table(
             table_name=table_name,
             scenario=scenario,
             test_insert_clause=test_insert_clause,
@@ -501,7 +501,7 @@ class TestInsertIntoRide(BaseTestInsertInto):
             ('ride_id', 'vehicle_id', 'time_ride_start', 'time_ride_end', 'start_lat', 'start_lng', 'end_lat', 'end_lng', 'gross_amount'),
             ('GSX8MZkpWEttApiFsELL', 'j8JnGWoM5bohbxAOzm42', '2019-05-02 21:69:50.218 UTC', '2019-05-02 22:08:13.39 UTC', '48.888835906982422', '2.2892532348632812', '48.888271331787109', '2.3052382469177246', '2.25'),
         ]
-        result = self._check_insert_on_main_table(
+        result = self.check_insert_on_main_table(
             table_name=table_name,
             scenario=scenario,
             test_insert_clause=test_insert_clause,
