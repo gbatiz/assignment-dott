@@ -1,0 +1,279 @@
+{
+  "deployment": {
+    "invalid_time": {
+      "type": "InvalidDatetimeFormat",
+      "args": "invalid input syntax for type timestamp with time zone: \"2019-05-21-04:52:29.113 UTC\"\n"
+    },
+    "missing_value": {
+      "type": "NotNullViolation",
+      "args": "null value in column \"time_task_resolved\" of relation \"deployment\" violates not-null constraint\nDETAIL:  Failing row contains (6fy0fO6BHW2IvxunS54N, 1234, 2019-05-19 02:34:31.999+00, null).\n"
+    },
+    "task_length": {
+      "type": "CheckViolation",
+      "args": "new row for relation \"deployment\" violates check constraint \"len_task_id\"\nDETAIL:  Failing row contains (asd, i1Fycyzyi1HeeEN8eVh1, 2019-05-19 02:34:31.999+00, 2019-05-21 04:52:29.113+00).\n"
+    },
+    "vehicle_length": {
+      "type": "CheckViolation",
+      "args": "new row for relation \"deployment\" violates check constraint \"len_vehicle_id\"\nDETAIL:  Failing row contains (6fy0fO6BHW2IvxunS54N, 1234, 2019-05-19 02:34:31.999+00, 2019-05-21 04:52:29.113+00).\n"
+    },
+    "valid_data": [
+      {
+        "task_id": "6fy0fO6BHW2IvxunS54N",
+        "vehicle_id": "i1Fycyzyi1HeeEN8eVh1",
+        "time_task_created": 1558233271999,
+        "time_task_resolved": 1558414349113
+      },
+      {
+        "task_id": "36AUD64tmGggMdmXLwY3",
+        "vehicle_id": "inxamrBymPp1kKuGoOXE",
+        "time_task_created": 1558236030842,
+        "time_task_resolved": 1558334329760
+      },
+      {
+        "task_id": "TcPf6gwxm98aVufsLcCo",
+        "vehicle_id": "1DfPwD1x6teNIhv8aS3p",
+        "time_task_created": 1558226389472,
+        "time_task_resolved": 1558242836514
+      }
+    ],
+    "duplicated": {
+      "main_table": [
+        {
+          "task_id": "6fy0fO6BHW2IvxunS54N",
+          "vehicle_id": "i1Fycyzyi1HeeEN8eVh1",
+          "time_task_created": 1558233271999,
+          "time_task_resolved": 1558414349113
+        },
+        {
+          "task_id": "36AUD64tmGggMdmXLwY3",
+          "vehicle_id": "inxamrBymPp1kKuGoOXE",
+          "time_task_created": 1558236030842,
+          "time_task_resolved": 1558334329760
+        },
+        {
+          "task_id": "TcPf6gwxm98aVufsLcCo",
+          "vehicle_id": "1DfPwD1x6teNIhv8aS3p",
+          "time_task_created": 1558226389472,
+          "time_task_resolved": 1558242836514
+        }
+      ],
+      "duplicate_table": [
+        {
+          "id": "6fy0fO6BHW2IvxunS54N",
+          "table_name": "deployment",
+          "airflow_task_run_id": "{{ ti }}"
+        },
+        {
+          "id": "36AUD64tmGggMdmXLwY3",
+          "table_name": "deployment",
+          "airflow_task_run_id": "{{ ti }}"
+        },
+        {
+          "id": "TcPf6gwxm98aVufsLcCo",
+          "table_name": "deployment",
+          "airflow_task_run_id": "{{ ti }}"
+        }
+      ]
+    }
+  },
+  "pickup": {
+    "invalid_time": {
+      "type": "InvalidDatetimeFormat",
+      "args": "invalid input syntax for type timestamp with time zone: \"2019/05-04 18:36:10.529 UTC\"\n"
+    },
+    "missing_value": {
+      "type": "NotNullViolation",
+      "args": "null value in column \"vehicle_id\" of relation \"pickup\" violates not-null constraint\nDETAIL:  Failing row contains (asd, null, null, 2019-05-04 18:36:10.529+00, null).\n"
+    },
+    "vehicle_length": {
+      "type": "CheckViolation",
+      "args": "new row for relation \"pickup\" violates check constraint \"len_vehicle_id\"\nDETAIL:  Failing row contains (yV4kXBtAx6GNRcJDLsF2, JkDkmUHoZasasa4ngg7hAx0F4, XXBGC5, 2019-05-04 21:30:07.089+00, 2019-05-04 21:30:07.883+00).\n"
+    },
+    "task_length": {
+      "type": "CheckViolation",
+      "args": "new row for relation \"pickup\" violates check constraint \"len_task_id\"\nDETAIL:  Failing row contains (yV4kXBtasasaaAx6GNRcJDLsF2, JkDkmUHoZ4ngg7hAx0F4, XXBGC5, 2019-05-04 21:30:07.089+00, 2019-05-04 21:30:07.883+00).\n"
+    },
+    "valid_data": [
+      {
+        "task_id": "yV4kXBtAx6GNRcJDLsF2",
+        "vehicle_id": "JkDkmUHoZ4ngg7hAx0F4",
+        "qr_code": "XXBGC5",
+        "time_task_created": 1557005407089,
+        "time_task_resolved": 1557005407883
+      },
+      {
+        "task_id": "xGAnYaxqoyGUa8RFcaTr",
+        "vehicle_id": "NpbLgU80Rliumo1QkoeZ",
+        "qr_code": "NWM2QA",
+        "time_task_created": 1556928437130,
+        "time_task_resolved": 1557072684233
+      },
+      {
+        "task_id": "MdkXjdQEW0BfFssY1w44",
+        "vehicle_id": "qHbfAktQ2MYfme75EhBM",
+        "qr_code": "M43B0N",
+        "time_task_created": 1556994970529,
+        "time_task_resolved": 1556994970998
+      }
+    ],
+    "duplicated": {
+      "main_table": [
+        {
+          "task_id": "yV4kXBtAx6GNRcJDLsF2",
+          "vehicle_id": "JkDkmUHoZ4ngg7hAx0F4",
+          "qr_code": "XXBGC5",
+          "time_task_created": 1557005407089,
+          "time_task_resolved": 1557005407883
+        },
+        {
+          "task_id": "xGAnYaxqoyGUa8RFcaTr",
+          "vehicle_id": "NpbLgU80Rliumo1QkoeZ",
+          "qr_code": "NWM2QA",
+          "time_task_created": 1556928437130,
+          "time_task_resolved": 1557072684233
+        },
+        {
+          "task_id": "MdkXjdQEW0BfFssY1w44",
+          "vehicle_id": "qHbfAktQ2MYfme75EhBM",
+          "qr_code": "M43B0N",
+          "time_task_created": 1556994970529,
+          "time_task_resolved": 1556994970998
+        }
+      ],
+      "duplicate_table": [
+        {
+          "id": "yV4kXBtAx6GNRcJDLsF2",
+          "table_name": "pickup",
+          "airflow_task_run_id": "{{ ti }}"
+        },
+        {
+          "id": "xGAnYaxqoyGUa8RFcaTr",
+          "table_name": "pickup",
+          "airflow_task_run_id": "{{ ti }}"
+        },
+        {
+          "id": "MdkXjdQEW0BfFssY1w44",
+          "table_name": "pickup",
+          "airflow_task_run_id": "{{ ti }}"
+        }
+      ]
+    },
+    "qr_length": {
+      "type": "CheckViolation",
+      "args": "new row for relation \"pickup\" violates check constraint \"len_vehicle_id\"\nDETAIL:  Failing row contains (xGAnYaxqoyGUa8RFcaTr, 12, NWM2QA, 2019-05-04 00:07:17.13+00, 2019-05-05 16:11:24.233+00).\n"
+    }
+  },
+  "ride": {
+    "invalid_time": {
+      "type": "DatetimeFieldOverflow",
+      "args": "date/time field value out of range: \"2019-05-02 21:69:50.218 UTC\"\n"
+    },
+    "missing_value": {
+      "type": "NotNullViolation",
+      "args": "null value in column \"time_ride_end\" of relation \"ride\" violates not-null constraint\nDETAIL:  Failing row contains (dVPK7fEkGfd3HJiYRMkj, f42vVrTOJh7yVYJACDCv, 2019-05-02 19:24:01.692+00, null, 48.829338073730469, 2.3760232925415039, 48.83233642578125, 2.3605866432189941, 2, 1179.41655666426).\n"
+    },
+    "ride_length": {
+      "type": "CheckViolation",
+      "args": "new row for relation \"ride\" violates check constraint \"ride_id\"\nDETAIL:  Failing row contains (dVPK7fEkGfd3HJi_____YRMkj, f42vVrTOJh7yVYJACDCv, 2019-05-02 19:24:01.692+00, 2019-05-02 19:30:43.433+00, 48.829338073730469, 2.3760232925415039, 48.83233642578125, 2.3605866432189941, 2, 1179.41655666426).\n"
+    },
+    "vehicle_length": {
+      "type": "CheckViolation",
+      "args": "new row for relation \"ride\" violates check constraint \"vehicle_id\"\nDETAIL:  Failing row contains (dVPK7fEkGfd3HJiYRMkj, f42vh7yVYJACDCv, 2019-05-02 19:24:01.692+00, 2019-05-02 19:30:43.433+00, 48.829338073730469, 2.3760232925415039, 48.83233642578125, 2.3605866432189941, 2, 1179.41655666426).\n"
+    },
+    "valid_data": [
+      {
+        "ride_id": "dVPK7fEkGfd3HJiYRMkj",
+        "vehicle_id": "f42vVrTOJh7yVYJACDCv",
+        "time_ride_start": 1556825041692,
+        "time_ride_end": 1556825443433,
+        "start_lat": 48.8293380737,
+        "start_lng": 2.3760232925,
+        "end_lat": 48.8323364258,
+        "end_lng": 2.3605866432,
+        "gross_amount": 2.0,
+        "distance_meters": 1179.4165566643
+      },
+      {
+        "ride_id": "y9xR90cTsRdWkC2JuO0r",
+        "vehicle_id": "ZWuRqR3eNjRVEQlHPsJy",
+        "time_ride_start": 1556800359928,
+        "time_ride_end": 1556801562333,
+        "start_lat": 48.8369750977,
+        "start_lng": 2.3043417931,
+        "end_lat": 48.826877594,
+        "end_lng": 2.3263616562,
+        "gross_amount": 4.0,
+        "distance_meters": 1966.5089509564
+      },
+      {
+        "ride_id": "GSX8MZkpWEttApiFsELL",
+        "vehicle_id": "j8JnGWoM5bohbxAOzm42",
+        "time_ride_start": 1556834390218,
+        "time_ride_end": 1556834893390,
+        "start_lat": 48.888835907,
+        "start_lng": 2.2892532349,
+        "end_lat": 48.8882713318,
+        "end_lng": 2.3052382469,
+        "gross_amount": 2.25,
+        "distance_meters": 1171.7223311892
+      }
+    ],
+    "duplicated": {
+      "main_table": [
+        {
+          "ride_id": "dVPK7fEkGfd3HJiYRMkj",
+          "vehicle_id": "f42vVrTOJh7yVYJACDCv",
+          "time_ride_start": 1556825041692,
+          "time_ride_end": 1556825443433,
+          "start_lat": 48.8293380737,
+          "start_lng": 2.3760232925,
+          "end_lat": 48.8323364258,
+          "end_lng": 2.3605866432,
+          "gross_amount": 2.0,
+          "distance_meters": 1179.4165566643
+        },
+        {
+          "ride_id": "y9xR90cTsRdWkC2JuO0r",
+          "vehicle_id": "ZWuRqR3eNjRVEQlHPsJy",
+          "time_ride_start": 1556800359928,
+          "time_ride_end": 1556801562333,
+          "start_lat": 48.8369750977,
+          "start_lng": 2.3043417931,
+          "end_lat": 48.826877594,
+          "end_lng": 2.3263616562,
+          "gross_amount": 4.0,
+          "distance_meters": 1966.5089509564
+        },
+        {
+          "ride_id": "GSX8MZkpWEttApiFsELL",
+          "vehicle_id": "j8JnGWoM5bohbxAOzm42",
+          "time_ride_start": 1556834390218,
+          "time_ride_end": 1556834893390,
+          "start_lat": 48.888835907,
+          "start_lng": 2.2892532349,
+          "end_lat": 48.8882713318,
+          "end_lng": 2.3052382469,
+          "gross_amount": 2.25,
+          "distance_meters": 1171.7223311892
+        }
+      ],
+      "duplicate_table": [
+        {
+          "id": "dVPK7fEkGfd3HJiYRMkj",
+          "table_name": "ride",
+          "airflow_task_run_id": "{{ ti }}"
+        },
+        {
+          "id": "y9xR90cTsRdWkC2JuO0r",
+          "table_name": "ride",
+          "airflow_task_run_id": "{{ ti }}"
+        },
+        {
+          "id": "GSX8MZkpWEttApiFsELL",
+          "table_name": "ride",
+          "airflow_task_run_id": "{{ ti }}"
+        }
+      ]
+    }
+  }
+}
