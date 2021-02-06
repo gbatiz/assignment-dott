@@ -66,7 +66,7 @@ def redirect_to_report(lookup):
         abort(400, description='Provide a valid dott vehicle ID (20 characters) or QR-code (6 characters).')
     if vehicle_id:
         return redirect(
-            location=SUPERSET_REDIRECT_URL+'?preselect_filters={"2": {"vehicle_id": "'+vehicle_id+'"}}',
+            location=SUPERSET_REDIRECT_URL+'?standalone=true&preselect_filters={"2": {"vehicle_id": "'+vehicle_id+'"}}',
             code=308
         )
     else:

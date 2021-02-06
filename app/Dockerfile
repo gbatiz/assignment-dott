@@ -6,7 +6,7 @@ FROM python:3.9-slim
 ENV PROJECT_ID=oval-turbine-303415 \
     SECRET_ID=postgres_uri \
     VERSION_ID=latest \
-    SUPERSET_REDIRECT_URL=http://localhost:9999/superset/dashboard/1/
+    SUPERSET_REDIRECT_URL=http://34.91.41.244:8088/superset/dashboard/1/
 
 # Allow statements and log messages to immediately appear in the Knative logs
 ENV PYTHONUNBUFFERED True
