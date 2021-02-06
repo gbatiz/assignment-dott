@@ -49,7 +49,7 @@ I decided to keep the csv-files in Cloud Storage, thinking along a scenario wher
 For ETL, I chose the managed Airflow of Cloud Composer.
 ![image](img/dag.png)
 
-For simplicity, I organized all transformations into one DAG. In a real-world scenario, with multiple dependencies, and other downstream uses of this data source, I would suggest to split the DAG up into individual upstream and a downstream DAGs to separate concerns. DAGs could be triggered with a Sensor, or  run on a simple schedules.
+For simplicity, I organized all transformations into one DAG. In a real-world scenario, with multiple dependencies, and other downstream uses of this data source, I would suggest to split the DAG up into individual upstream and a downstream DAGs to separate concerns. DAGs could be triggered with a Sensor, or run on simple schedules.
 
 ### Ingest
 #### Locking at staging
@@ -95,13 +95,12 @@ If all the above checks out, it redirects the client to a Superset-dashboard pre
 
 ## Vehicle Performance Report on Apache Superset
 ![image](img/superset.png)
-I chose Superset for data visualization because it provides a visually pleasing dashboard solution and a lot a of flexibility in configuration, all free and open source.  
+I chose Superset for data visualization because it provides a visually pleasing dashboard solution and a lot of flexibility in configuration, all free and open source.  
 I built a simple report with basic metrics on vehicle usage and profitability, with the ability to see historical performance over an adjustable time window, plus a map to visualize rides. This deviates from the requirements set out in the assignment a little bit, but I believe that having more context could be useful to better judge the profitability of a vehicle over time. If needed, the filters on vehicle, time window and deployment cycles allow for displaying the same data that the json endpoint is returning.  
 *The dashboard is public, so no need to authenticate after the Flask redirect.*  
 
 ### Not a production deployment
-Superset is currently developed as a Compute Engine VM, running in development mode. It's only purpose is to illustrate the solution.  
-In a production setup, I would recommend using either a Kubernetes cluster or going serverless with a combination of App Engine (webserver and worker nodes), Cloud Memorystore (Redis cache) and Cloud SQL (Metadata DB).
+Superset is currently deployed on a Compute Engine VM, running in development mode. It's only purpose is to illustrate the solution. In a production setup, I would recommend using either a Kubernetes cluster or going serverless with a combination of App Engine (for webserver and worker nodes), Cloud Memorystore (for Redis cache) and Cloud SQL (for Metadata DB).
 
 ## Stress test
 I stress tested the json-endpoint with the Locust python package, see the `load_test/`-folder.  
