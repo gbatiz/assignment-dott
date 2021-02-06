@@ -1,0 +1,352 @@
+{
+    "public.duplicate": [
+        {
+            "column_name": "id",
+            "is_nullable": "NO",
+            "data_type": "text"
+        },
+        {
+            "column_name": "table_name",
+            "is_nullable": "NO",
+            "data_type": "text"
+        },
+        {
+            "column_name": "airflow_task_run_id",
+            "is_nullable": "NO",
+            "data_type": "text"
+        },
+        {
+            "constraint_name": "not_null",
+            "constraint_type": "CHECK"
+        },
+        {
+            "constraint_name": "not_null",
+            "constraint_type": "CHECK"
+        },
+        {
+            "constraint_name": "not_null",
+            "constraint_type": "CHECK"
+        }
+    ],
+    "public.deployment": [
+        {
+            "column_name": "time_task_created",
+            "is_nullable": "NO",
+            "data_type": "timestamp with time zone"
+        },
+        {
+            "column_name": "time_task_resolved",
+            "is_nullable": "NO",
+            "data_type": "timestamp with time zone"
+        },
+        {
+            "column_name": "task_id",
+            "is_nullable": "NO",
+            "data_type": "text"
+        },
+        {
+            "column_name": "vehicle_id",
+            "is_nullable": "NO",
+            "data_type": "text"
+        },
+        {
+            "constraint_name": "len_task_id",
+            "constraint_type": "CHECK"
+        },
+        {
+            "constraint_name": "len_vehicle_id",
+            "constraint_type": "CHECK"
+        },
+        {
+            "constraint_name": "deployment_pkey",
+            "constraint_type": "PRIMARY KEY"
+        },
+        {
+            "constraint_name": "not_null",
+            "constraint_type": "CHECK"
+        },
+        {
+            "constraint_name": "not_null",
+            "constraint_type": "CHECK"
+        },
+        {
+            "constraint_name": "not_null",
+            "constraint_type": "CHECK"
+        },
+        {
+            "constraint_name": "not_null",
+            "constraint_type": "CHECK"
+        }
+    ],
+    "public.pickup": [
+        {
+            "column_name": "time_task_created",
+            "is_nullable": "NO",
+            "data_type": "timestamp with time zone"
+        },
+        {
+            "column_name": "time_task_resolved",
+            "is_nullable": "NO",
+            "data_type": "timestamp with time zone"
+        },
+        {
+            "column_name": "task_id",
+            "is_nullable": "NO",
+            "data_type": "text"
+        },
+        {
+            "column_name": "vehicle_id",
+            "is_nullable": "NO",
+            "data_type": "text"
+        },
+        {
+            "column_name": "qr_code",
+            "is_nullable": "NO",
+            "data_type": "text"
+        },
+        {
+            "constraint_name": "len_task_id",
+            "constraint_type": "CHECK"
+        },
+        {
+            "constraint_name": "len_vehicle_id",
+            "constraint_type": "CHECK"
+        },
+        {
+            "constraint_name": "len_qr_code",
+            "constraint_type": "CHECK"
+        },
+        {
+            "constraint_name": "pickup_pkey",
+            "constraint_type": "PRIMARY KEY"
+        },
+        {
+            "constraint_name": "not_null",
+            "constraint_type": "CHECK"
+        },
+        {
+            "constraint_name": "not_null",
+            "constraint_type": "CHECK"
+        },
+        {
+            "constraint_name": "not_null",
+            "constraint_type": "CHECK"
+        },
+        {
+            "constraint_name": "not_null",
+            "constraint_type": "CHECK"
+        },
+        {
+            "constraint_name": "not_null",
+            "constraint_type": "CHECK"
+        }
+    ],
+    "public.qr_code": [
+        {
+            "column_name": "qr_code",
+            "is_nullable": "NO",
+            "data_type": "text"
+        },
+        {
+            "column_name": "vehicle_id",
+            "is_nullable": "NO",
+            "data_type": "text"
+        },
+        {
+            "constraint_name": "len_qr_code",
+            "constraint_type": "CHECK"
+        },
+        {
+            "constraint_name": "len_vehicle_id",
+            "constraint_type": "CHECK"
+        },
+        {
+            "constraint_name": "qr_code_pkey",
+            "constraint_type": "PRIMARY KEY"
+        },
+        {
+            "constraint_name": "not_null",
+            "constraint_type": "CHECK"
+        },
+        {
+            "constraint_name": "not_null",
+            "constraint_type": "CHECK"
+        }
+    ],
+    "public.ride": [
+        {
+            "column_name": "distance_meters",
+            "is_nullable": "YES",
+            "data_type": "numeric"
+        },
+        {
+            "column_name": "end_lng",
+            "is_nullable": "YES",
+            "data_type": "numeric"
+        },
+        {
+            "column_name": "gross_amount",
+            "is_nullable": "YES",
+            "data_type": "numeric"
+        },
+        {
+            "column_name": "time_ride_start",
+            "is_nullable": "NO",
+            "data_type": "timestamp with time zone"
+        },
+        {
+            "column_name": "time_ride_end",
+            "is_nullable": "NO",
+            "data_type": "timestamp with time zone"
+        },
+        {
+            "column_name": "start_lat",
+            "is_nullable": "YES",
+            "data_type": "numeric"
+        },
+        {
+            "column_name": "start_lng",
+            "is_nullable": "YES",
+            "data_type": "numeric"
+        },
+        {
+            "column_name": "end_lat",
+            "is_nullable": "YES",
+            "data_type": "numeric"
+        },
+        {
+            "column_name": "vehicle_id",
+            "is_nullable": "NO",
+            "data_type": "text"
+        },
+        {
+            "column_name": "ride_id",
+            "is_nullable": "NO",
+            "data_type": "text"
+        },
+        {
+            "constraint_name": "ride_id",
+            "constraint_type": "CHECK"
+        },
+        {
+            "constraint_name": "vehicle_id",
+            "constraint_type": "CHECK"
+        },
+        {
+            "constraint_name": "ride_pkey",
+            "constraint_type": "PRIMARY KEY"
+        },
+        {
+            "constraint_name": "not_null",
+            "constraint_type": "CHECK"
+        },
+        {
+            "constraint_name": "not_null",
+            "constraint_type": "CHECK"
+        },
+        {
+            "constraint_name": "not_null",
+            "constraint_type": "CHECK"
+        },
+        {
+            "constraint_name": "not_null",
+            "constraint_type": "CHECK"
+        }
+    ],
+    "staging.deployment": [
+        {
+            "column_name": "task_id",
+            "is_nullable": "YES",
+            "data_type": "text"
+        },
+        {
+            "column_name": "vehicle_id",
+            "is_nullable": "YES",
+            "data_type": "text"
+        },
+        {
+            "column_name": "time_task_created",
+            "is_nullable": "YES",
+            "data_type": "text"
+        },
+        {
+            "column_name": "time_task_resolved",
+            "is_nullable": "YES",
+            "data_type": "text"
+        }
+    ],
+    "staging.pickup": [
+        {
+            "column_name": "task_id",
+            "is_nullable": "YES",
+            "data_type": "text"
+        },
+        {
+            "column_name": "vehicle_id",
+            "is_nullable": "YES",
+            "data_type": "text"
+        },
+        {
+            "column_name": "qr_code",
+            "is_nullable": "YES",
+            "data_type": "text"
+        },
+        {
+            "column_name": "time_task_created",
+            "is_nullable": "YES",
+            "data_type": "text"
+        },
+        {
+            "column_name": "time_task_resolved",
+            "is_nullable": "YES",
+            "data_type": "text"
+        }
+    ],
+    "staging.ride": [
+        {
+            "column_name": "ride_id",
+            "is_nullable": "YES",
+            "data_type": "text"
+        },
+        {
+            "column_name": "vehicle_id",
+            "is_nullable": "YES",
+            "data_type": "text"
+        },
+        {
+            "column_name": "time_ride_start",
+            "is_nullable": "YES",
+            "data_type": "text"
+        },
+        {
+            "column_name": "time_ride_end",
+            "is_nullable": "YES",
+            "data_type": "text"
+        },
+        {
+            "column_name": "start_lat",
+            "is_nullable": "YES",
+            "data_type": "text"
+        },
+        {
+            "column_name": "start_lng",
+            "is_nullable": "YES",
+            "data_type": "text"
+        },
+        {
+            "column_name": "end_lat",
+            "is_nullable": "YES",
+            "data_type": "text"
+        },
+        {
+            "column_name": "end_lng",
+            "is_nullable": "YES",
+            "data_type": "text"
+        },
+        {
+            "column_name": "gross_amount",
+            "is_nullable": "YES",
+            "data_type": "text"
+        }
+    ]
+}
