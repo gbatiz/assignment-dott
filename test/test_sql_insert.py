@@ -81,8 +81,8 @@ class BaseTestInsertInto(unittest.TestCase):
     def try_insert(self, table_name):
         result = None
         try:
-            insert_qury = scripts[f'insert_into_{table_name}.sql']
-            self.cur.execute(insert_qury)
+            insert_query = scripts[f'insert_into_{table_name}.sql']
+            self.cur.execute(insert_query)
         except Exception as e:
             result = jsonify_exception(e)
         return result
