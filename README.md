@@ -64,11 +64,7 @@ To satisfy the duplicate logging requirement, I check for duplicates between the
 ### Data Model
 ![image](img/data_model.png)
 
-Since the source data is already organized around entities, I didn't do any major remodeling of the data.
-
-I create one new table around vehicles to be able to quickly translate between `qr_code` and `vehicle_id` for requests coming through the reporting endpoint. This is indexed on `qr_code` for fast lookups.
-
-The duplicates table is solely added for the requirement in the assignment.
+I didn't do any major remodeling of the data, as the events from the three tables were all the use case needed. I did create one new table around vehicles to be able to quickly translate between `qr_code` and `vehicle_id` for requests coming through the reporting endpoint. This is indexed on `qr_code` for fast lookups. The duplicates table is solely added for the requirement in the assignment.
 
 #### Presentation tables
 A table and a view are built to serve each endpoint:
