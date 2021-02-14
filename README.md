@@ -74,7 +74,7 @@ A table and a view are built to serve each endpoint:
 
 ## Endpoints, Flask-application
 ### Cloud Run
-I chose Cloud Run for handling requests. Cloud Functions could have been even more lightweight, but they can only have one connection to a database at a time, which I though is a downside if the endpoint has to stand up to real load. App Engine, Compute Engine VMs or Kubernetes clusters could have worked too, but they were too heavy and complex for the use case. Cloud Run seems like the perfect tool for this job, with autoscaling and easy deployment out of the box.
+I chose Cloud Run for handling requests. Cloud Functions could have been even more lightweight, but they can only have one connection to a database at a time, which I thought is a downside if the endpoint has to stand up to real load. App Engine, Compute Engine VMs or Kubernetes clusters could have worked too, but they were too heavy and complex for the use case. Cloud Run seems like the perfect tool for this job, with autoscaling and easy deployment out of the box.
 
 ### Flask
 The Flask-application handling requests is listening on two endpoints.
