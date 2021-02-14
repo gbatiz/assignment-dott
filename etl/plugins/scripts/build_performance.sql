@@ -120,15 +120,15 @@ WITH last_cycle_rides AS (
 
 UNION ALL
 
-        SELECT p.qr_code AS lookup
-              ,r.response
-          FROM reshaped AS r
-    INNER JOIN (
-                SELECT DISTINCT vehicle_id
-                               ,qr_code
-                           FROM public.pickup
-               ) AS p
-               ON r.lookup = p.vehicle_id;
+    SELECT p.qr_code AS lookup
+          ,r.response
+      FROM reshaped AS r
+INNER JOIN (
+            SELECT DISTINCT vehicle_id
+                           ,qr_code
+                       FROM public.pickup
+            ) AS p
+            ON r.lookup = p.vehicle_id;
 
 
 -- Create index on lookup for fast response
