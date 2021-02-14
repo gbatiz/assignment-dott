@@ -1,6 +1,5 @@
 # %%
 import os
-import numpy as np
 import pandas as pd
 import seaborn as sns
 from haversine import haversine
@@ -92,13 +91,15 @@ offending_rides.describe()
     ].merge(
         right=deploy.groupby('vehicle_id').time_task_resolved.max(),
         how='inner',
-        on='vehicle_id'
+        on='vehicle_id',
+        suffixes=('', '_')
     ).merge(
         right=pickup.groupby('vehicle_id').time_task_created.max(),
         how='inner',
-        on='vehicle_id'
+        on='vehicle_id',
+        suffixes=('', '_')
     )
-)[lambda df: (df.ts>df.time_task_created) & (df.ts>df.time_task_resolved) & (df.event!='ride_end')]
+)[lambda df: (df.ts > df.time_task_created) & (df.ts > df.time_task_resolved) & (df.event != 'ride_end')]
 # %% [markdown]
 # ## Lack of `gross_amount`?
 # %%dd
